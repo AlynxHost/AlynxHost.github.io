@@ -76,7 +76,7 @@ datGui();
 
 const backToHome = document.querySelector('.back-to-home');
 backToHome.onclick = () => {
-    window.location = 'index.html'
+    window.location = 'index'
 }
 
 
