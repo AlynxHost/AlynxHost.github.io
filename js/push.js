@@ -192,12 +192,9 @@ setTimeout(() => {
     canvas.classList.add('scaled');
 }, 1000);
 addEventListener('mousemove', (event) => {
-if(window.matchMedia("(pointer: coarse)").matches) {
-    event.preventDefault();
-else{
     mouse.x = event.pageX;
     mouse.y = event.pageY;
-}
+
 })
 
 addEventListener('touchmove', (event) => {
@@ -222,7 +219,6 @@ addEventListener('resize', () => {
 canvas.addEventListener('mousedown', (ev) => {
 if(window.matchMedia("(pointer: coarse)").matches) {
     ev.preventDefault()
-}
 else{
     drawing = true;
 }
