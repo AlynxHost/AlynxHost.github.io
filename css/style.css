@@ -22,6 +22,11 @@ span.textAnimation{
     color: #fff !important  ;
 }
 
+html, body{
+    height:100%;
+    width:100%;
+    overscroll-behavior:contain;
+}
 body {
     background: var(--body-background-color);
     height: 100%;
@@ -30,7 +35,6 @@ body {
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
-    overscroll-behavior: none;
 }
 .l-text{
     position: absolute;
