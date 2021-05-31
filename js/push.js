@@ -1,9 +1,9 @@
 var stats = new Stats();
-stats.showPanel( 0 ); // 0: fps, 1: ms, 2: mb, 3+: custom
-document.body.appendChild( stats.dom );
+stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+document.body.appendChild(stats.dom);
 
-    const canvas = document.querySelector('canvas');
-    const settings = {
+const canvas = document.querySelector('canvas');
+const settings = {
     Background: '#111',
     Particles_Color: 'rgba(255,255,255,1)',
     ColorFul: false,
@@ -15,7 +15,7 @@ document.body.appendChild( stats.dom );
     Liquid: false,
     Connect: false,
     Distance: 0,
-    Effects:'Magnet'
+    Effects: 'Magnet'
 }
 // Magnet Effect to work
 let dx,
@@ -36,13 +36,13 @@ let dx,
     reqAniMag,
     hue = 0,
     drawing = false;
-    const pi = Math.PI * 2;
+const pi = Math.PI * 2;
 
 gui = new dat.GUI({
     name: 'Particles System'
 });
 
-gui.add(settings, 'Effects', ['Magnet', 'Push']).setValue('Magnet').onChange(function(valueIs){
+gui.add(settings, 'Effects', ['Magnet', 'Push']).setValue('Magnet').onChange(function (valueIs) {
     onChange();
     animationTree();
 });
@@ -53,15 +53,15 @@ animationTree();
 
 
 
-function pushAnimation(){
-    for(let i = 0; i < particlesArray.length; i++){
+function pushAnimation() {
+    for (let i = 0; i < particlesArray.length; i++) {
         particlesArray[i].pushParticles();
     }
     reqAniPush = requestAnimationFrame(pushAnimation);
 }
 
-function magnetAnimation(){
-    for(let i = 0; i < particlesArray.length; i++){
+function magnetAnimation() {
+    for (let i = 0; i < particlesArray.length; i++) {
         particlesArray[i].magnetParticles();
     }
     reqAniMag = requestAnimationFrame(magnetAnimation);
@@ -69,28 +69,27 @@ function magnetAnimation(){
 
 
 
-function animationTree(){
-    
-    if(Push === true){
+function animationTree() {
+
+    if (Push === true) {
         pushAnimation();
         cancelAnimationFrame(reqAniMag)
-    }
-    else if(Push === false){
+    } else if (Push === false) {
         cancelAnimationFrame(reqAniPush);
         magnetAnimation();
     }
 }
-function onChange(){
-    if(Push === false){
+
+function onChange() {
+    if (Push === false) {
         Push = true;
-    } 
-    else{
+    } else {
         Push = false;
     }
 }
 
 
-gui.add(settings, 'Connect').onChange(function(Checked) {
+gui.add(settings, 'Connect').onChange(function (Checked) {
     function request() {
         if (Checked) {
             requestAni = requestAnimationFrame(request);
@@ -122,7 +121,7 @@ gui.add(settings, 'Connect').onChange(function(Checked) {
     request();
 });
 gui.add(settings, 'Distance', 1, 500).setValue(50);
-gui.add(settings, 'Liquid').onChange( value => {
+gui.add(settings, 'Liquid').onChange(value => {
 
     if (value) {
         dontConnect = true;
@@ -132,13 +131,12 @@ gui.add(settings, 'Liquid').onChange( value => {
             settings.Particles_size = 20;
             gux.updateDisplay();
         }
-    } 
-    else {
+    } else {
         canvas.style.filter = 'none';
     }
 });
 const colorUpdate = gui.add(settings, 'ColorFul').onChange(value => {
-    value ?  root.changeColor() : root.returnColor() ;
+    value ? root.changeColor() : root.returnColor();
 });
 gui.addColor(settings, 'Background');
 gui.addColor(settings, 'Particles_Color').onChange(() => {
@@ -152,7 +150,7 @@ gui.add(settings, 'Particles', 10, 700).setValue(100).onChange(() => {
     init();
     root.particlesSize();
     root.particleSpeed();
-    root.particlesColor();  
+    root.particlesColor();
     let particlesCount = settings.Particles;
     document.querySelector('h5').innerText = `${particlesArray.length} \n Particles`
     settings.ColorFul ? root.changeColor() : root.returnColor();
@@ -166,7 +164,7 @@ gui.add(settings, 'Mouse_Interactivity', 1, 100).setValue(40).onChange(() => {
     }
 });
 gui.add(settings, 'Mouse', 1, 500).setValue(500);
-const gux = gui.add(settings, 'Particles_size', 0, 100).step(0.1).setValue(3).onChange( () => {
+const gux = gui.add(settings, 'Particles_size', 0, 100).step(0.1).setValue(3).onChange(() => {
     root.particlesSize();
 });
 
@@ -221,23 +219,21 @@ addEventListener('mousemove', (event) => {
 
 })
 canvas.addEventListener('mousedown', (ev) => {
-if(qwindow.matchMedia("(pointer: coarse)").matches) {
-    ev.preventDefault()
-    console.log(drawing);
-}
-else{
-    
-    drawing = true;
-}
+    if (qwindow.matchMedia("(pointer: coarse)").matches) {
+        ev.preventDefault()
+        console.log(drawing);
+    } else {
+
+        drawing = true;
+    }
 })
 
 canvas.addEventListener('mouseup', (evx) => {
-if(window.matchMedia("(pointer: coarse)").matches) {
-   evx.preventDefault()
-}
-else{
-    drawing = false;
-}
+    if (window.matchMedia("(pointer: coarse)").matches) {
+        evx.preventDefault()
+    } else {
+        drawing = false;
+    }
 })
 
 
@@ -259,7 +255,7 @@ class Particles {
     }
     update() {
 
-        
+
 
 
         this.x += this.speedX;
@@ -272,9 +268,9 @@ class Particles {
         if (this.y + this.size > window.innerHeight || this.y + this.size < 0) {
             this.speedY = -this.speedY;
         }
-      
-       
-        
+
+
+
         // if (this.x !== this.baseX ) {
         //     let dx = this.x - this.baseX;
         //     this.x -= dx / 5;
@@ -324,7 +320,7 @@ class Particles {
             particlesArray[i].speedY = Math.random() * (settings.Speed / 2);
         }
     }
-    pushParticles(){
+    pushParticles() {
         dx = mouse.x - this.x;
         dy = mouse.y - this.y;
         distance = Math.sqrt(dx * dx + dy * dy);
@@ -335,8 +331,8 @@ class Particles {
         directionX = forceDirectionX * force * settings.Mouse_Interactivity;
         directionY = forceDirectionY * force * settings.Mouse_Interactivity;
         if (drawing === true && distance < settings.Mouse) {
-            this.x -= directionX ;
-            this.y -= directionY ;
+            this.x -= directionX;
+            this.y -= directionY;
             if (this.y + this.size > window.innerHeight || this.y + this.size < 0) {
                 this.y += directionY;
             }
@@ -347,7 +343,7 @@ class Particles {
 
         }
     }
-    magnetParticles(){
+    magnetParticles() {
         dx = mouse.x - this.x;
         dy = mouse.y - this.y;
         distance = Math.sqrt(dx * dx + dy * dy);
@@ -395,12 +391,12 @@ const animate = () => {
     } else {
         hue += 0.2;
     }
-    if(push === true){
-        for(let i = 0; i < particlesArray.length; i++){
+    if (push === true) {
+        for (let i = 0; i < particlesArray.length; i++) {
             root.pushParticles();
         }
     }
-	stats.end();
+    stats.end();
 }
 let root;
 const init = () => {
