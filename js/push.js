@@ -191,18 +191,17 @@ canvas.height = window.innerHeight;
 setTimeout(() => {
     canvas.classList.add('scaled');
 }, 1000);
-addEventListener('mousemove', (event) => {
-    mouse.x = event.pageX;
-    mouse.y = event.pageY;
 
-})
 
 addEventListener('touchmove', (event) => {
-    mouse.x = event.touches[0].pageX;
-    mouse.y = event.touches[0].pageY;
+    mouse.x = event.touches[0].clientX;
+    mouse.y = event.touches[0].clientY;
+    drawing = true;
 
 });
-addEventListener('touchstart', () => {
+addEventListener('touchstart', (e) => {
+    mouse.x = e.touches[0].clientX;
+    mouse.y = e.touches[0].clientY;
     drawing = true;
 })
 addEventListener('touchend', () => {
@@ -216,10 +215,18 @@ addEventListener('resize', () => {
     settings.Speed = 3
     speedVar.updateDisplay();
 })
+addEventListener('mousemove', (event) => {
+    mouse.x = event.pageX;
+    mouse.y = event.pageY;
+
+})
 canvas.addEventListener('mousedown', (ev) => {
-if(window.matchMedia("(pointer: coarse)").matches) {
+if(qwindow.matchMedia("(pointer: coarse)").matches) {
     ev.preventDefault()
+    console.log(drawing);
+}
 else{
+    
     drawing = true;
 }
 })
