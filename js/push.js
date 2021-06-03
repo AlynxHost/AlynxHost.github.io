@@ -219,7 +219,7 @@ addEventListener('mousemove', (event) => {
 
 })
 canvas.addEventListener('mousedown', (ev) => {
-    if (qwindow.matchMedia("(pointer: coarse)").matches) {
+    if (window.matchMedia("(pointer: coarse)").matches) {
         ev.preventDefault()
         console.log(drawing);
     } else {
