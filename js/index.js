@@ -91,7 +91,7 @@ let root = document.documentElement;
    
     
 
-    let xx = Math.random() * window.innerWidth,yy = Math.random() * window.innerHeight;
+    let xx = window.innerWidth / 2,yy = window.innerHeight / 2;
     const radius = 55;
     let speedXx = 30;
     let speedYy = 30;
