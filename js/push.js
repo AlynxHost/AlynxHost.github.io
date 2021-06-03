@@ -15,7 +15,7 @@ const settings = {
     Liquid: false,
     Connect: false,
     Distance: 0,
-    Effects: 'Magnet'
+    Effects: 'Magnet' 
 }
 // Magnet Effect to work
 let dx,
