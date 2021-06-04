@@ -1,10 +1,7 @@
 var stats = new Stats();
 stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
 document.body.appendChild(stats.dom);
-const elementx = document.querySelectorAll('input');
-elementx.forEach((elem)=>{
-  elem.setAttribute('readonly', true);
-})
+
 const canvas = document.querySelector('canvas');
 const settings = {
     Background: '#111',
@@ -430,3 +427,11 @@ document.body.insertAdjacentHTML('afterbegin', `
         </defs>
       </svg>
       `);
+setTimeout(()=> {
+  const elementx = document.querySelectorAll('input');
+  elementx.forEach((elem)=>{
+  elem.setAttribute('readonly', true);
+})
+},2000);
+
+
