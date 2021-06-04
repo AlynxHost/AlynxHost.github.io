@@ -12,7 +12,7 @@ const settings = {
     ColorFul: false,
     Mouse: 0,
     Particles: 0,
-    Speed: 0,
+    Speed: 0, 
     Mouse_Interactivity: 0,
     Particles_size: 0,
     Liquid: false,
