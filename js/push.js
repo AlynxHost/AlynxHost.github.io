@@ -191,18 +191,18 @@ setTimeout(() => {
 }, 1000);
 
 
-addEventListener('touchmove', (event) => {
+canvas.addEventListener('touchmove', (event) => {
     mouse.x = event.touches[0].clientX;
     mouse.y = event.touches[0].clientY;
     drawing = true;
 
 });
-addEventListener('touchstart', (e) => {
+canvas.addEventListener('touchstart', (e) => {
     mouse.x = e.touches[0].clientX;
     mouse.y = e.touches[0].clientY;
     drawing = true;
 })
-addEventListener('touchend', () => {
+canvas.addEventListener('touchend', () => {
     drawing = false;
 })
 addEventListener('resize', () => {
@@ -213,7 +213,7 @@ addEventListener('resize', () => {
     settings.Speed = 3
     speedVar.updateDisplay();
 })
-addEventListener('mousemove', (event) => {
+canvas.addEventListener('mousemove', (event) => {
     mouse.x = event.pageX;
     mouse.y = event.pageY;
 
