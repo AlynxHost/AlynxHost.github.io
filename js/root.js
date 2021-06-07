@@ -95,22 +95,22 @@ const mouse = {
     x: undefined,
     y: undefined
 }
-addEventListener('mousemove', (event) => {
+canvas.addEventListener('mousemove', (event) => {
 stats.begin();
     mouse.x = event.x;
     mouse.y = event.y;
     branchOut();
 stats.end();
 });
-addEventListener('touchmove', (event) => {
+canvas.addEventListener('touchmove', (event) => {
     mouse.x = event.touches[0].clientX;
     mouse.y = event.touches[0].clientY;
     branchOut();
 })
-addEventListener('touchstart', function() {
+canvas.addEventListener('touchstart', function() {
     drawing = true;
 });
-addEventListener('touchend', () => {
+canvas.addEventListener('touchend', () => {
     drawing = false;
 })
 
@@ -162,12 +162,12 @@ function branchOut() {
     }
 
 }
-addEventListener('mousedown', () => {
+canvas.addEventListener('mousedown', () => {
     drawing = true;
 
 })
 
-addEventListener('mouseup', () => {
+canvas.addEventListener('mouseup', () => {
     drawing = false;
 })
 addEventListener('resize', () => {
