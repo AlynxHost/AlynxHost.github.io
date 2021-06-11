@@ -38,5 +38,5 @@ Rest is written in vanilla javascript
 
 
 
-
+<hr>
 <br> Help me Improve this effect by contributing in it 
