@@ -3,6 +3,8 @@
 <br>
 <br>
 Note : I'm a complete beginner & still learnng, my code is messy. i'll improve it soon.
+<br>
+<br>
 # Libraries : 
 <h4>The following libraries / open-source projects were used in the development of this project.</h4>
 <ol>
@@ -13,7 +15,6 @@ Note : I'm a complete beginner & still learnng, my code is messy. i'll improve i
 
 Rest is written in vanilla javascript 
 
-<br>
 <br>
 
 # Screenshots
