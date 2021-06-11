@@ -2,14 +2,16 @@
 Note : I'm a complete beginner & still learnng, my code is messy. i'll improve it soon.
 # Libraries Used : 
 <ol>
-    <li>Greensock Animation (for animating intro) </li>
-    <li>Stats.js (for fps)</li>
-    <li>Dat.gui (for Controling)</li>
+    <li><a href="https://github.com/greensock/GSAP">Greensock Animation</a>  (Tweening Intro) </li>
+    <li><a href="https://github.com/mrdoob/stats.js/">Stats.js</a>  (Performance measurement)</li>
+    <li><a href="https://github.com/dataarts/dat.gui">Dat.gui</a>  (Controling)</li>
 </ol>
 Rest is written in vanilla javascript
 
 <br>
 <br>
+
+# Screenshots
 
 # Home
 <br>
