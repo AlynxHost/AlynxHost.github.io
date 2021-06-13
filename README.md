@@ -1,7 +1,6 @@
 # Canvas Particles System
 
-
-![Canvas](https://github.com/V3rB0se/PIctures/blob/main/icon.png) 
+<img src="https://github.com/V3rB0se/PIctures/blob/main/icon.png" alt="canvas" />
 
 
 <a href="https://alynxhost.github.io/">Demo First :)</a>
