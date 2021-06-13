@@ -11,11 +11,11 @@ But you should consider reading the documentation of mdn regarding what canvas a
 
 <br>
 
-"The Canvas API provides a means for drawing graphics via JavaScript and the HTML <canvas> element. Among other things, it can be used for animation, game graphics, data visualization, photo manipulation, and real-time video processing."
+<b>"The Canvas API provides a means for drawing graphics via JavaScript and the HTML <canvas> element. Among other things, it can be used for animation, game graphics, data visualization, photo manipulation, and real-time video processing."</b>
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Canvas_API</a>
 <br>
 <br>
-Note : I'm a complete beginner & still learnng, my code can be messy / unreadable. i'll improve it Soon .
+    <b style="color:red;">Note :</b> I'm a complete beginner & still learnng, my code can be messy / unreadable. i'll improve it Soon .
 <br>
 <br>
 # Libraries : 
