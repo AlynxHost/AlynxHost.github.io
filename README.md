@@ -1,14 +1,23 @@
 # Canvas Particles System 
-<a href="https://alynxhost.github.io/">Demo</a>
+<a href="https://alynxhost.github.io/">Demo First :)</a>
 <br>
 <br>
-Note : I'm a complete beginner & still learnng, my code is messy. i'll improve it soon.
+A quick google search should be enough to understand what html5 canvas is
+But you should consider reading the documentation of mdn regarding what canvas api is.
+
+<br>
+
+"The Canvas API provides a means for drawing graphics via JavaScript and the HTML <canvas> element. Among other things, it can be used for animation, game graphics, data visualization, photo manipulation, and real-time video processing."
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Canvas_API</a>
+<br>
+<br>
+Note : I'm a complete beginner & still learnng, my code can be messy / unreadable. i'll improve it Soon .
 <br>
 <br>
 # Libraries : 
 <h4>The following libraries / open-source projects were used in the development of this project.</h4>
 <ol>
-    <li><a href="https://github.com/greensock/GSAP">Greensock Animation</a>  (Tweening Intro) </li>
+    <li><a href="https://github.com/greensock/GSAP">Gsap</a>  (Tweening Intro) </li>
     <li><a href="https://github.com/mrdoob/stats.js/">Stats.js</a>  (Performance Monitoring)</li>
     <li><a href="https://github.com/dataarts/dat.gui">Dat.gui</a>  (Controling / Changing Values)</li>
 </ol>
