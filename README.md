@@ -10,7 +10,9 @@ A quick google search should be enough to understand what html5 canvas is
 But you should consider reading the documentation of mdn regarding what canvas api is.
 
 <br>
-
+<b>Well let me save your time :P</b>
+<br>
+<br>
 <b>"The Canvas API provides a means for drawing graphics via JavaScript and the HTML <canvas> element. Among other things, it can be used for animation, game graphics, data visualization, photo manipulation, and real-time video processing."</b>
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Canvas_API</a>
 <br>
