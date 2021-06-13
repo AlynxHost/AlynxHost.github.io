@@ -1,6 +1,6 @@
 # Canvas Particles System
 
-<img src="https://github.com/V3rB0se/PIctures/blob/main/icon.png" alt="canvas" />
+<img src="https://github.com/V3rB0se/PIctures/blob/main/icon.png" alt="canvas"  width="200px" />
 
 
 
