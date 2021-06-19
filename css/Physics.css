@@ -1,6 +1,6 @@
  html,body {
             overscroll-behavior: none;
-           
+            height:100%; 
         }
        canvas {
             display: block;
@@ -9,6 +9,7 @@
             position: fixed;
             top:0;
             left: 0;
+            height:100%; 
             background: #111;
         }
         .btn-01 {
