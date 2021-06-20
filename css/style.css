@@ -25,7 +25,7 @@ span.textAnimation{
 html, body{
     height:100%;
     width:100%;
-    overscroll-behavior:contain;
+    overscroll-behavior:none;
 }
 body {
     background: var(--body-background-color);
@@ -135,7 +135,9 @@ canvas {
     top: 0;
     left: 0;
     display: block;
-    z-index: -1;    
+    z-index: -1;
+    height:100%;
+    width:100%;
 }
 
 a {
