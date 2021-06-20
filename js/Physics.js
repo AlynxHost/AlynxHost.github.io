@@ -98,13 +98,13 @@
             this.color = `hsl(${hue},100%,50%)`;
         }
         updateParticles() {
-            this.speedY+=0.5;
+            this.speedY+=1;
             this.y += this.speedY;
 
 
             if(this.y + this.radius > window.innerHeight || this.y + this.radius < 0){
-                this.speedY = -this.speedY;
-                this.speedY+=0.1;
+                this.speedY = -this.speedY + 2;
+                this.speedY+=0.8;
                 this.radius -= 4;
             }
         }
@@ -129,29 +129,9 @@
     function handleAnimation () {
         for(let i = 0; i < particlesArray.length; i++){
           particlesArray[i].drawParticles();
-        //   particlesArray[i].color = `hsl(${hue},100%,50%)`;
-         
-        //   for(var j = i; j < particlesArray.length; j++){
-        //     let dx,dy,distance;
-        //     dx = particlesArray[i].x - particlesArray[j].x;
-        //     dy = particlesArray[i].y - particlesArray[j].y;
-        //     distance = Math.sqrt(dx * dx + dy * dy);
-        //     if(distance < 200){
-        //         ctx.beginPath()
-        //         ctx.strokeStyle = '#fff';
-        //         ctx.lineWidth = particlesArray[i].radius / 12;
-        //         ctx.moveTo(particlesArray[i].x,particlesArray[i].y);
-        //         ctx.lineTo(particlesArray[j].x,particlesArray[j].y);
-        //         ctx.stroke();
-        //     }
-        // }
             if(keypress){
                 particlesArray[i].updateParticles();
                 
-            }
-
-            if(particlesArray[i].y + particlesArray[i].radius > window.innerHeight){
-               particlesArray[i].radius -= 0.01;
             }
 
             if(particlesArray[i].radius  <= 0.3){
