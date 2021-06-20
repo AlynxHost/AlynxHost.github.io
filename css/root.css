@@ -13,10 +13,7 @@
 html, body{
     height:100%;
     width:100%;
-    overscroll-behavior:contain;
-}
-body{
-    overscroll-behavior: contain;
+    overscroll-behavior: none;
 }
 canvas{
     position: fixed;
