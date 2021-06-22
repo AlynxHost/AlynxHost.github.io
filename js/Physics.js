@@ -10,16 +10,11 @@
         y:undefined
     }
 
-    const colorsArray = [
-        '#ffecef',
-        '#ffc200',
-        '#ff0'
-    ]
     let drawing = false;
 
     addEventListener('mousemove', event => {
-        mouse.x = event.pageX;
-        mouse.y = event.pageY;
+        mouse.x = event.x;
+        mouse.y = event.y;
         
         if(drawing){
             for(let i = 0; i < 1; i++){
@@ -43,8 +38,8 @@
         drawing = false;
     })
     addEventListener('touchmove', event => {
-        mouse.x = event.touches[0].pageX;
-        mouse.y = event.touches[0].pageY;
+         mouse.x = event.touches[0].clientX;
+         mouse.y = event.touches[0].clientY;
         
         if(drawing){
             for(let i = 0; i < 1; i++){
