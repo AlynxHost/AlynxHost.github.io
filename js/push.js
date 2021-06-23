@@ -432,6 +432,11 @@ setTimeout(()=> {
   elementx.forEach((elem)=>{
   elem.setAttribute('readonly', true);
   elem.style.pointerEvents = 'none';
+   })
+  const datGuiElementsName = document.querySelectorAll('.property-name');
+  datGuiElementsName.forEach((elem) => {
+    elem.style.userSelect = 'none'; 
+ 
 }) 
 },2000);
 
