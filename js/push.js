@@ -7,7 +7,7 @@ const settings = {
     Background: 'rgba(0,0,0,1)',
     Particles_Color: 'rgba(255,255,255,1)',
     ColorFul: false,
-    Mouse: 0,
+    Mouse: 0, 
     Particles: 0,
     Speed: 0,
     Mouse_Interactivity: 0,
