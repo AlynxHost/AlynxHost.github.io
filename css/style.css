@@ -20,6 +20,7 @@ span.textAnimation{
     box-sizing: border-box;
     font-family: agrandir;
     color: #fff !important  ;
+    user-select: none;
 }
 
 html, body{
@@ -62,7 +63,9 @@ body {
     font-size: clamp(1.8em, 6vw, 3rem); 
     font-family: agrandir;
 }
-
+.parent-heading img, .parent-heading h1 {
+    user-select: none;
+}
 .parent-heading ~ ol {
     display: flex;
     justify-content: center;
@@ -116,6 +119,7 @@ ol li a:hover {
     text-decoration: none;
     color: var(--text-color);
     font-weight: bolder;
+    user-select: none;
 }
 
 .parent-heading {
