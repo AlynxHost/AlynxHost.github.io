@@ -21,6 +21,13 @@ body{
     height: 100%;
    
 }
+/* .dg .cr {
+    border-left: 3px dashed #1ed36f !important;
+    border-right: 3px dashed #1ed36f !important;
+    border-bottom: none !important;
+    border-top: none !important;
+    margin: 5px 0px;
+} */
 canvas{
     position: fixed;
     top: 0;
@@ -38,13 +45,35 @@ h5{
     display:inline-flex;
     justify-content: center;
     align-items: center;
-    background: rgba(255,0,0,1);
     color: #111;
     font-family: agrandir;
     user-select: none;
     filter: drop-shadow(0px 0px 15px rgba(0,0,0,0.4));
     pointer-events: none;
     user-select:none;
+}
+.slider{
+    border-radius: 10px;
+}
+.slider .slider-fg{
+    border-radius: 10px;  
+}
+.close-button.close-bottom{
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+}
+.dg .c .slider-fg{
+    background:#fff ;
+}
+.dg .c .slider:hover .slider-fg
+{
+    background: #fff;
+}
+.c input {
+    border-radius: 10px;
+}
+li{
+    user-select: none !important;
 }
 @keyframes appear{
 from {
