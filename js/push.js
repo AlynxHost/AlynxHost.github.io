@@ -8,7 +8,7 @@ const settings = {
   Particles_Color: `rgba(0,0,0,1)`,
   ColorFul: false,
   Mouse: 0,
-  Particles: 0,
+  Particles: 0, 
   Speed: 0,
   Density: 0,
   Particles_size: 0,
