@@ -4,7 +4,7 @@ document.body.appendChild(stats.dom);
 
 const canvas = document.querySelector("canvas");
 const settings = {
-  Background: "rgba(132,25,182,1)", //"rgba(182,25,36,1)" || ,
+  Background: "rgba(255,70,70,1)", //"rgba(182,25,36,1)" || ,
   Particles_Color: `rgba(255,255,255,1)`,
   ColorFul: false,
   Mouse: 0,
@@ -19,7 +19,7 @@ const settings = {
   Trail: false,
   "Random Shape": false,
   Blink: false,
-  Opacity: 0.2,
+  Opacity: 1,
   "On Hover": false,
 };
 
@@ -100,7 +100,7 @@ Animations.add(settings, "Trail").onChange((trail) => {
   isTrail = trail;
 });
 let opacElement = ParticlesFolder.add(settings, "Opacity", 0.2, 1)
-  .setValue(0.2)
+  .setValue(1)
   .onChange((opac) => {
     opac = settings.Opacity;
     console.log(settings.opac);
