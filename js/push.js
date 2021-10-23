@@ -4,7 +4,7 @@ document.body.appendChild(stats.dom);
 
 const canvas = document.querySelector("canvas");
 const settings = {
-  Background: "rgba(255,70,70,1)", //"rgba(182,25,36,1)" || ,
+  Background: "rgba(70,255,88,1)", //"rgba(182,25,36,1)" || ,
   Particles_Color: `rgba(0,0,0,1)`,
   ColorFul: false,
   Mouse: 0,
