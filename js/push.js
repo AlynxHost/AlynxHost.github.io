@@ -212,8 +212,8 @@ colorFolder.addColor(settings, "Particles_Color").onChange(() => {
   ChangeCounterColor();
 });
 
-const speedVar = Animations.add(settings, "Speed", 3, 100)
-  .setValue(3)
+const speedVar = Animations.add(settings, "Speed", 1, 100)
+  .setValue(1)
   .onChange(() => {
     root.particleSpeed();
   });
@@ -278,7 +278,7 @@ addEventListener("resize", () => {
   canvas.height = window.innerHeight * 2;
   particlesArray = [];
   init();
-  settings.Speed = 3;
+  settings.Speed = 1;
   speedVar.updateDisplay();
 });
 canvas.addEventListener("mousemove", (event) => {
