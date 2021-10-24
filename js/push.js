@@ -50,7 +50,7 @@ let dx,
   anglex2 = 0,
   Blink = false,
   onHover = false;
-fadeIn = true;
+ fadeIn = true;
 
 const pi = Math.PI * 2;
 
@@ -75,7 +75,7 @@ Interaction.add(settings, "On Hover").onChange((hoverEffect) => {
   onHover = !onHover;
 });
 
-ParticlesFolder.add(settings, "Particles", 10, 700)
+const particlesUpdater =  ParticlesFolder.add(settings, "Particles", 10, 700)
   .setValue(160)
   .onChange(() => {
     reinit();
@@ -90,8 +90,8 @@ ParticlesFolder.add(settings, "Particles", 10, 700)
   });
 
 const gux = ParticlesFolder.add(settings, "Particles_size", 0, 50)
-  .step(0.01)
-  .setValue(3)
+  .step(0.01 )
+  .setValue(38)
   .onChange(() => {
     root.particlesSize();
   });
@@ -281,6 +281,17 @@ addEventListener("resize", () => {
   settings.Speed = 1;
   speedVar.updateDisplay();
 });
+canvas.addEventListener('click', () => {
+  for(let i = 0; i < 3; i++){
+    particlesArray.push(new Particles(mouse.x, mouse.y, settings.Particles_Color));
+  }
+  particlesUpdater.updateDisplay();
+  if(settings.ColorFul){
+  root.changeColor();
+  }
+  particleCounter();
+
+})
 canvas.addEventListener("mousemove", (event) => {
   if (onHover) {
     drawing = true;
@@ -567,17 +578,17 @@ getHueColor();
 let randColor = [hueColor, colorsArray];
 
 class Particles {
-  constructor(x, y) {
-    this.x = x;
+  constructor(x, y, color) {
+    this.x = x + Math.sin(anglex2);
     // Math.random() * window.innerWidth;
     // Math.random() * window.innerHeight;
-    this.y = y;
+    this.y = y + Math.cos(anglex2);
     this.baseX = this.x;
     this.baseY = this.y;
-    this.size = Math.random() * settings.Particles_size + 1;
+    this.size =  Math.random() * settings.Particles_size + 1;
     this.speedX = Math.random() * settings.Speed - settings.Speed / 2;
     this.speedY = Math.random() * settings.Speed - settings.Speed / 2;
-    this.color = settings.Particles_Color;
+    this.color = color;
     this.density = settings.Density;
     this.spikesArr = [2, 3, 4, 5, 6, 7, 8];
     this.spikesVal =
@@ -609,7 +620,6 @@ class Particles {
     ctx.fill();
   }
 
-  ChangeOpacity() {}
 
   drawRandShapes() {
     ctx.beginPath();
@@ -648,7 +658,7 @@ class Particles {
 
   particlesSize() {
     for (let i = 0; i < particlesArray.length; i++) {
-      particlesArray[i].size = settings.Particles_size;
+      particlesArray[i].size = Math.random() * settings.Particles_size + 1;
     }
   }
   particlesColor() {
@@ -779,16 +789,21 @@ function init() {
   for (var i = 0; i < settings.Particles; i++) {
     root = new Particles(
       Math.random() * window.innerWidth,
-      Math.random() * window.innerHeight
+      Math.random() * window.innerHeight,
+      settings.Particles_Color
     );
     root.density = settings.Density;
     particlesArray.push(root);
   }
 }
 init();
-const ParticlesCounter = document.querySelector("h5");
-ParticlesCounter.style.textAlign = "center";
-ParticlesCounter.innerText = `${particlesArray.length} \n Particles`;
+function particleCounter(){
+  const ParticlesCounter = document.querySelector("h5");
+  ParticlesCounter.style.textAlign = "center";
+  ParticlesCounter.innerText = `${particlesArray.length} \n Particles`;
+  particlesUpdater.updateDisplay();
+}
+particleCounter();
 animate();
 
 // <-- svg->
@@ -823,4 +838,4 @@ window.onload = () => {
 
 // // const dChild = document.querySelector('.dg.main.a').firstChild;
 // // dChild.remove();
-// // } 
+// // }
