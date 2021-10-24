@@ -575,7 +575,7 @@ function getHueColor() {
 }
 getHueColor();
 
-let randColor = [hueColor, colorsArray];
+let randColor = [colorsArray];
 
 class Particles {
   constructor(x, y, color) {
