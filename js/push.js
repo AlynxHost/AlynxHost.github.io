@@ -21,6 +21,8 @@ const settings = {
   Blink: false,
   Opacity: 1,
   "On Hover": false,
+  "Stroke Only": false,
+  "Stroke Width" : 1
 };
 
 // Magnet Effect to work
@@ -49,8 +51,9 @@ let dx,
   NotRandomShape = true,
   anglex2 = 0,
   Blink = false,
-  onHover = false;
- fadeIn = true;
+  onHover = false,
+ fadeIn = true,
+ Stroke = false;
 
 const pi = Math.PI * 2;
 
@@ -59,6 +62,7 @@ gui = new dat.GUI({
 });
 
 ParticlesFolder = gui.addFolder("Particles");
+ParticlesFolder.add(settings, 'Stroke Width', 1, 5).setValue(1);
 colorFolder = gui.addFolder("Colors");
 Animations = gui.addFolder("Animations");
 LineConnect = gui.addFolder("Line Connect");
@@ -103,7 +107,6 @@ let opacElement = ParticlesFolder.add(settings, "Opacity", 0.2, 1)
   .setValue(1)
   .onChange((opac) => {
     opac = settings.Opacity;
-    console.log(settings.opac);
   });
 animationTree();
 
@@ -138,7 +141,14 @@ function onChange() {
     Push = false;
   }
 }
-
+ParticlesFolder.add(settings, 'Stroke Only').onChange((stroke) => {
+  if(stroke){
+    Stroke = true;
+  }
+  else{
+    Stroke = false;
+  }
+})
 LineConnect.add(settings, "Connect").onChange(function (Checked) {
   function request() {
     if (Checked) {
@@ -253,6 +263,12 @@ function ChangeCounterColor() {
 
 ChangeCounterColor();
 const ctx = canvas.getContext("2d");
+ctx.globalCompositeOperation = 'destination-over';
+ctx.shadowBlur = 500;
+ctx.shadowOffsetX = 2;
+ctx.shadowOffsetY = 2;
+ctx.shadowColor = '#111';
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -281,17 +297,7 @@ addEventListener("resize", () => {
   settings.Speed = 1;
   speedVar.updateDisplay();
 });
-canvas.addEventListener('click', () => {
-  for(let i = 0; i < 3; i++){
-    particlesArray.push(new Particles(mouse.x, mouse.y, settings.Particles_Color));
-  }
-  particlesUpdater.updateDisplay();
-  if(settings.ColorFul){
-  root.changeColor();
-  }
-  particleCounter();
 
-})
 canvas.addEventListener("mousemove", (event) => {
   if (onHover) {
     drawing = true;
@@ -579,10 +585,10 @@ let randColor = [colorsArray];
 
 class Particles {
   constructor(x, y, color) {
-    this.x = x + Math.sin(anglex2);
+    this.x = x;
     // Math.random() * window.innerWidth;
     // Math.random() * window.innerHeight;
-    this.y = y + Math.cos(anglex2);
+    this.y = y;
     this.baseX = this.x;
     this.baseY = this.y;
     this.size =  Math.random() * settings.Particles_size + 1;
@@ -590,11 +596,10 @@ class Particles {
     this.speedY = Math.random() * settings.Speed - settings.Speed / 2;
     this.color = color;
     this.density = settings.Density;
-    this.spikesArr = [2, 3, 4, 5, 6, 7, 8];
-    this.spikesVal =
-      this.spikesArr[Math.floor(Math.random() * this.spikesArr.length)];
+    this.spikesArr = [3, 4, 5];
+    this.spikesVal = this.spikesArr[Math.floor(Math.random() * this.spikesArr.length)];
     this.spikes = this.spikesVal;
-    this.inset = 0.5;
+    this.inset = this.spikes === 3 ? 1 : 0.5 ;
     this.globalAlpha = settings.Opacity;
   }
   update() {
@@ -615,9 +620,16 @@ class Particles {
     ctx.beginPath();
     ctx.lineWidth = 0.5;
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fillStyle = this.color;
+   
+    if(!Stroke){
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    } else{
+        ctx.lineWidth = settings["Stroke Width"]; 
+        ctx.strokeStyle = this.color;
+        ctx.stroke();
+    } 
     ctx.globalAlpha = settings.Opacity;
-    ctx.fill();
   }
 
 
@@ -625,7 +637,6 @@ class Particles {
     ctx.beginPath();
     ctx.save();
     ctx.translate(this.x, this.y);
-    ctx.rotate(anglex2);
     ctx.moveTo(0, 0 - this.size);
 
     for (let i = 0; i < this.spikes; i++) {
@@ -636,8 +647,15 @@ class Particles {
     }
     ctx.restore();
     ctx.closePath();
-    ctx.fillStyle = this.color;
-    ctx.fill();
+    if(!Stroke){
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+    else{
+      ctx.lineWidth = settings["Stroke Width"];
+      ctx.strokeStyle = this.color;
+      ctx.stroke();
+    }
     ctx.globalAlpha = settings.Opacity;
   }
 
@@ -732,7 +750,7 @@ function BlinkEffect() {
       }
     } else {
       settings.Opacity -= 0.01;
-      if (settings.Opacity < 0.2) {
+      if (settings.Opacity < 0.1) {
         fadeIn = true;
         settings.Opacity = 0.2;
       }
@@ -834,8 +852,23 @@ window.onload = () => {
   });
 };
 
-// window.onload = function (){
 
-// // const dChild = document.querySelector('.dg.main.a').firstChild;
-// // dChild.remove();
-// // }
+
+
+
+
+
+/***********************************************************************************************
+************************************************************************************************
+
+_________    ___  ___      _______           _______       ________       ________     
+|\___   ___\ |\  \|\  \    |\  ___ \         |\  ___ \     |\   ___  \    |\   ___ \    
+\|___ \  \_| \ \  \\\  \   \ \   __/|        \ \   __/|    \ \  \\ \  \   \ \  \_|\ \   
+     \ \  \   \ \   __  \   \ \  \_|/__       \ \  \_|/__   \ \  \\ \  \   \ \  \ \\ \  
+      \ \  \   \ \  \ \  \   \ \  \_|\ \       \ \  \_|\ \   \ \  \\ \  \   \ \  \_\\ \ 
+       \ \__\   \ \__\ \__\   \ \_______\       \ \_______\   \ \__\\ \__\   \ \_______\
+        \|__|    \|__|\|__|    \|_______|        \|_______|    \|__| \|__|    \|_______|         
+        
+        
+************************************************************************************************                                                                                        
+************************************************************************************************/
