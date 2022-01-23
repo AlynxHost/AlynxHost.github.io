@@ -15,24 +15,30 @@ let gui,
     ClearRectFunction,
     radiusofMouse,
     saveButton,
-    image
+    image,
+    isShadow = true
 
-const datGui = () => {
+
+    const audio = new Audio();
+    audio.src = 'root.mp3';
+    const datGui = () => {
     gui = new dat.GUI({
         name: 'My GUI'
     });
     ShadowControl = {
-        Shadow:false
+        Shadow:true,
+        Operation:['source-over', 'source-in', 'source-out', 'source-atop', 'destination-over', 'destination-in', 'destination-out', 'destination-atop', 'lighter', 'copy', 'xor', 'multiply', 'screen', 'darken', 'color-dodge', 'color-burn', 'hard-light', 'soft-light', 'difference', 'exclusion', 'hue', 'saturation', 'color', 'luminosity']
     }
     colorCode = {
-        Color: '#7c6800',
-        Stroke: '#1d1d1d',
-        Background: '#fffa9a'
+        Color: '#ef82c3',
+        Stroke: '#726666',
+        Background: '#f2a49a'
     };
     controls = {
         SpeedY: 0,
         SpeedX: 0,
     };
+
     Shapes = {
         Triangle: false,
         Rectangle:false,
@@ -63,6 +69,7 @@ const datGui = () => {
     };
     //Number of Particles 
     
+    
     colorFolder = gui.addFolder('Colors');
     speedFolder = gui.addFolder('Speed');
     ShapesFolder = gui.addFolder('Shapes');
@@ -72,19 +79,23 @@ const datGui = () => {
     gui.add(ClearRectFunction, 'Clear');
     NumbersofParticles.add(ShadowControl, 'Shadow').onChange((shadow) => {
         if(shadow){
-            ctx.globalCompositeOperation = 'destination-over'
+            isShadow = true;
             ctx.shadowBlur = 5;
             ctx.shadowColor = '#333';
             ctx.shadowOffsetX = 1;
             ctx.shadowOffsetY = 1;
         }
         else{
-            ctx.globalCompositeOperation = 'destination-over'
+            isShadow = false;
             ctx.shadowBlur = 0;
             ctx.shadowOffsetX = 0;
             ctx.shadowOffsetY = 0;
         }
     });
+    NumbersofParticles.add(ShadowControl, 'Operation',['source-over', 'destination-over', 'lighter', 'xor', 'multiply', 'darken', 'color-dodge', 'color-burn', 'hard-light', 'soft-light', 'difference', 'exclusion', 'hue', 'saturation', 'color', 'luminosity']
+    ).setValue(['destination-over']).onChange((val) => {
+        ctx.globalCompositeOperation = `${val}`;
+    })
     NumbersofParticles.add(numberofRoots, 'Particles', 1, 100).step(1).setValue(1);
     speedFolder.add(controls, 'SpeedX', .5, 1).step(0.1).setValue(0.5);
     speedFolder.add(controls, 'SpeedY', .5, 1).step(0.1).setValue(0.5);
@@ -145,12 +156,20 @@ canvas.addEventListener('touchmove', (event) => {
     branchOut();
 })
 canvas.addEventListener('touchstart', function() {
+    if(isShadow){
+        ctx.shadowBlur = 5;
+            ctx.shadowColor = '#333';
+            ctx.shadowOffsetX = 1;
+            ctx.shadowOffsetY = 1;
+    }
+    audio.play();
     drawing = true;
 });
 canvas.addEventListener('touchend', () => {
     drawing = false;
 })
 
+ctx.globalCompositeOperation = 'destination-over';
 class Root {
     constructor(x, y, color, centerX, centerY) {
         this.x = x + Math.sin(angle);
@@ -237,6 +256,9 @@ class Root {
 let root;
 function branchOut() {
     if (drawing) {
+
+        audio.loop = true;
+        
         const centerX = mouse.x;
         const centerY = mouse.y;
         for (let i = 0; i < numberofRoots.Particles; i++) {
@@ -246,12 +268,26 @@ function branchOut() {
         }
         hue += 1;
     }
+    else{
+        audio.loop = false;
+        audio.pause();
+        audio.currentTime = 0;
+    }
 
 }
 canvas.addEventListener('mousedown', () => {
+    if(isShadow){
+        ctx.shadowBlur = 5;
+            ctx.shadowColor = '#333';
+            ctx.shadowOffsetX = 1;
+            ctx.shadowOffsetY = 1;
+    }
+    audio.play();
     drawing = true;
+   
 
 })
+
 
 canvas.addEventListener('mouseup', () => {
     drawing = false;
