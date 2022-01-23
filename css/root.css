@@ -13,7 +13,10 @@
 html, body{
     height:100%;
     width:100%;
-    overscroll-behavior: none;
+    overscroll-behavior:contain;
+}
+body{
+    overscroll-behavior: contain;
 }
 canvas{
     position: fixed;
@@ -21,7 +24,7 @@ canvas{
     left: 0;
     height: 100%;
     width: 100%;
-    background:#fffa9a;
+    background:#f2a49a;
 }
 .dg.ac{
     position: relative;
