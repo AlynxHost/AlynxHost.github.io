@@ -154,6 +154,8 @@ canvas.addEventListener('touchmove', (event) => {
     mouse.x = event.touches[0].clientX;
     mouse.y = event.touches[0].clientY;
     branchOut();
+    
+    audio.play();
 })
 canvas.addEventListener('touchstart', function() {
     if(isShadow){
@@ -162,7 +164,6 @@ canvas.addEventListener('touchstart', function() {
             ctx.shadowOffsetX = 1;
             ctx.shadowOffsetY = 1;
     }
-    audio.play();
     drawing = true;
 });
 canvas.addEventListener('touchend', () => {
