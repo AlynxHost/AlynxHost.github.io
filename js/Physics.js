@@ -87,20 +87,20 @@
             this.y = mouse.y;
             this.windowPy =  window.innerWidth;
             this.windowPx =  window.innerHeight;
-            this.radius = window.innerWidth < 768 ?  5  : 20 ;
+            this.radius = window.innerWidth < 768 ?  10  : 20 ;
             this.speedX = 0;
             this.speedY = Math.random() * 2 + 2;
             this.color = `hsl(${hue},100%,50%)`;
         }
         updateParticles() {
-            this.speedY+=1;
+            this.speedY+=1; 
             this.y += this.speedY;
 
 
             if(this.y + this.radius > window.innerHeight || this.y + this.radius < 0){
                 this.speedY = -this.speedY + 2;
                 this.speedY+=0.8;
-                this.radius -= 4;
+                this.radius -= 0.005;
             }
         }
         drawParticles() {
