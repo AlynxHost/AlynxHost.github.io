@@ -74,7 +74,7 @@ tl.from(".opac", {
 
 
 // Canvas Grid
-let hue = 0;
+/* let hue = 0;
 let particlesArray = [];
 let hueArray = [];
 let drawing = false;
@@ -301,7 +301,7 @@ function animate(timeStamp) {
   requestAnimationFrame(animate);
 }
 
-
+*/
 function hide() {
   const loading = document.querySelector(".loading");
   const back = document.querySelector(".load-back");
