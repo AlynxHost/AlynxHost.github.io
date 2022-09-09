@@ -88,20 +88,34 @@
             this.windowPy =  window.innerWidth;
             this.windowPx =  window.innerHeight;
             this.radius = window.innerWidth < 768 ?  10  : 20 ;
-            this.speedX = 0;
+            this.speedX = Math.random() * 3 - 1.5;
             this.speedY = Math.random() * 2 + 2;
             this.color = `hsl(${hue},100%,50%)`;
         }
         updateParticles() {
-            this.speedY+=1; 
-            this.y += this.speedY;
-
-
-            if(this.y + this.radius > window.innerHeight || this.y + this.radius < 0){
-                this.speedY = -this.speedY + 2;
-                this.speedY+=0.8;
-                this.radius -= 0.005;
+            
+            if(this.y + this.radius + this.speedY > canvas.height ){
+                this.speedY = -this.speedY * 0.9;
             }
+            else{
+                this.speedY += 1;
+               if(this.radius == 10){
+                    this.radius -= 0.01;
+               }
+               else{
+                    this.radius -= 0.03;
+               }
+            }
+
+            if(this.x + this.radius + this.speedX + 10 > canvas.width || this.x + this.radius + 10 + this.speedX < 0){
+                this.speedX = -this.speedX * 0.9;
+            }
+            
+            
+            this.y += this.speedY;
+            this.x += this.speedX;
+
+
         }
         drawParticles() {
             ctx.beginPath();
