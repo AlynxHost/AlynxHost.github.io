@@ -8,7 +8,7 @@ let angle = 0;
 let gui,
     colorFolder,
     speedFolder,
-    colorCode,
+    colorCode, 
     backgroundColor,
     controls,
     NumbersofParticles,
