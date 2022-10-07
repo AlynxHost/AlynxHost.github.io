@@ -1,7 +1,7 @@
 const settings = {
   SpeedX: 2,
   SpeedY: 2,
-  Particles: 0,
+  Particles: 1,
   Stroke: false,
   "Stroke size": 1,
   Shapes: {
@@ -12,8 +12,8 @@ const settings = {
   },
   Size: 20,
   colorCode: {
-    Color: "#7c6800",
-    Background: "rgb(0,0,0.05)",
+    Color: "rgba(70,255,88,1)",
+    Background: "rgba(20,25,88,1)",
     "Stroke Color": "#1d1d1d",
     Colorful: false,
   },
@@ -23,6 +23,10 @@ const settings = {
     Star: false,
     Arc: true,
   },
+  Effects: {
+    gravity: 1,
+    friction: 0.9,
+  },
 };
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
@@ -30,32 +34,30 @@ const gui = new dat.GUI({ name: "Physics" });
 const colorFolder = gui.addFolder("Colors");
 const speedFolder = gui.addFolder("Speed");
 const ShapesFolder = gui.addFolder("Shapes");
-const NumbersofParticles = gui.addFolder("Particles");
+const EffectsFolder = gui.addFolder("Physics");
+const particlesFolder = gui.addFolder("Particles");
 colorFolder.addColor(settings.colorCode, "Background").onChange(() => {
   document.querySelector("canvas").style.background =
     settings.colorCode.Background;
+  rgbaValue = settings.colorCode.Background.split(",").slice(0, -1).toString();
+  console.log(rgbaValue);
 });
 
-// function LittleTrail() {
-//       const spliArr = settings.colorCode.Background.split("rgb");
-//       colorText = spliArr.toString();
-//       colorText = colorText.split(',');
-//       console.log(colorText);
-//       ctx.fillStyle = `rgba${colorText},0.1)`;
-//       ctx.fillRect(0, 0, window.innerWidth, window.innerHeight); 
-//       console.log(`rgba${colorText}`);
-// }
+particlesFolder.add(settings, "Particles", 1, 10).step(1);
+particlesFolder.add(settings, "Size", 1, 20).step(0.1);
+EffectsFolder.add(settings.Effects, "gravity", 1, 5).step(0.1);
+EffectsFolder.add(settings.Effects, "friction", 0.8, 5).step(0.1);
 colorFolder.addColor(settings.colorCode, "Color").onChange(() => {
   settings.colorCode.Colorful = false;
-  colorFulc.updateDisplay();
+  colorFolder.updateDisplay();
 });
 colorFolder.add(settings, "Stroke size", 1, 5).step(0.1);
 colorFolder.add(settings, "Stroke");
 colorFolder.addColor(settings.colorCode, "Stroke Color");
-const colorFulc = colorFolder.add(settings.colorCode, "Colorful");
 speedFolder.add(settings, "SpeedX", 5, 200).step(0.1);
 speedFolder.add(settings, "SpeedY", 5, 200).step(0.1);
 
+colorFolder.add(settings.colorCode, "Colorful");
 const star = ShapesFolder.add(settings.Shapes, "Star")
   .listen()
   .onChange(function () {
@@ -85,16 +87,19 @@ const mouse = {
   x: undefined,
   y: undefined,
 };
- 
+
 let colorfulControl = false;
 let drawing = false;
-
+let rgbaValue = settings.colorCode.Background.split(",")
+  .slice(0, -1)
+  .toString();
+const trailOpacity = 0.5;
 canvas.addEventListener("mousemove", (event) => {
   mouse.x = event.x;
   mouse.y = event.y;
 
   if (drawing) {
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < settings.Particles; i++) {
       particlesArray.push(new Particles());
     }
   }
@@ -163,9 +168,11 @@ class Particles {
     this.y = mouse.y;
     this.inset = 2;
     this.spikes = 10;
+    this.gravity = settings.Effects.gravity;
+    this.friction = settings.Effects.friction;
     this.windowPy = window.innerWidth;
     this.windowPx = window.innerHeight;
-    this.radius = window.innerWidth < 768 ? 5 : 30;
+    this.radius = settings.Size;
     this.speedX = Math.random() * settings.SpeedX - settings.SpeedX / 2;
     this.speedY = Math.random() * settings.SpeedY - settings.SpeedY / 2;
     this.color = settings.colorCode.Colorful
@@ -178,10 +185,10 @@ class Particles {
     this.x += this.speedX;
 
     if (this.y + this.radius + this.speedY > window.innerHeight) {
-      this.speedY = Math.floor(-this.speedY * 0.8);
+      this.speedY = -this.speedY * this.friction;
       this.radius -= Math.random() * 2 + 1;
     } else {
-      this.speedY += 1;
+      this.speedY += this.gravity;
     }
   }
 
@@ -270,8 +277,19 @@ function handleAnimation() {
   }
 }
 
+
+function ExpandGui(){
+  const titles = document.querySelectorAll('li.title');
+  titles.forEach((title) => {
+    title.click();
+  })
+}
+ExpandGui();
+
 function animateIt() {
-//   LittleTrail();
+  ctx.fillStyle = `${rgbaValue},${trailOpacity})`;
+  ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
   handleAnimation();
   requestAnimationFrame(animateIt);
   hue++;
