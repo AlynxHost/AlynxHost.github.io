@@ -1,13 +1,13 @@
 @font-face {
-  font-family: Waller;
-  src: url(fonts/Wallpoet-Regular.ttf);
+  font-family: Bio;
+  src: url(fonts/Big\ Quicksand.ttf);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Waller;
+  font-family: Bio;
 }
 
 html,
