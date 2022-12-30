@@ -149,7 +149,7 @@ class Letter {
     ctx.rotate((this.angle * 180) / Math.PI);
     ctx.globalAlpha = this.alpha;
     ctx.fillStyle = this.color;
-    ctx.font = this.fontSize + "em Monospace";
+    ctx.font = this.fontSize + "em Bio";
     ctx.fillText(letter, -ctx.measureText(letter).width / 2, 20);
     ctx.restore();
   }
