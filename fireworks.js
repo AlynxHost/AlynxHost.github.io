@@ -6,7 +6,7 @@ const button = document.querySelector("button");
 const fireworkSound = new Audio();
 const tl = gsap.timeline();
 const numb = document.querySelectorAll('.numb');
-let colorreq;
+let colorreq; 
 let headers = null;
 let power = window.innerWidth < 768 ? 5 : 8;
 let fireworks = [];
