@@ -129,9 +129,13 @@ ol li a:hover {
 .parent-heading img {
     display: block;
     width: 100px;
-    filter:invert(1);
+    filter: invert(1);
     margin-bottom: 20px;
     object-fit: cover;
+    transform: scaleX(-1) rotate(-88deg) !important;
+    position: absolute;
+    right: 80px;
+    top: 100px;
 }
 
 canvas {
