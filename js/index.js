@@ -5,7 +5,7 @@ tl.from(".l-text", {
   duration: 2,
 });
 
-tl.to(".l-text", {
+tl.to(".l-text", { 
   y: -50,
   opacity: 0,
   delay: 2,
